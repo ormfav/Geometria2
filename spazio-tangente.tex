@@ -1,0 +1,279 @@
+Definizioni di derivata su varietà. 
+$p\in M$ voglio fare somma e prodotto di $f:U\rightarrow\R$,
+$g:V\rightarrow\R$ con $p\in U\cap V$ e $f,g$ lisce. Problema: 
+se $V\neq U$ somma e prodotto sono definite solo su $U\cap V$.
+Voglio togliere riferimenti al dominio. 
+Definisco l'algebra dei germi $C^\infty(M,p):=\left\{ (U,f): p\in
+U, f:U\rightarrow\R\text{ liscia} \right\}/_\sim$ con la relazione
+di equivalenza $(U,f)\sim(V,g)$ se $f=g$ su $W=U\cap V,\,\,p\in W$.
+La classe di equivalenza di $(U,f)$ è detta germe di $f$. In pratica
+mi preoccupo solo del comportamento delle funzioni molto vicino a
+$p$. Posso quindi scrivere
+$[(U,f)]_\sim+[(V,g)]_\sim=[(U,f)+(V,g)]_\sim$ e
+$[(U,f)]_\sim[(V,g)]_\sim=[(U,f)(V,g)]_\sim$. Per semplicita da qui in avanti
+$[(U,f)]_\sim\equiv f$. 
+
+Posso introdurre lo spazio tangente in due modi equivalenti:
+tramite derivazioni e tramite cammini.
+
+\subsection{Derivazioni}
+\begin{definition}[Derivazione]
+    Applicazione $v:C^\infty(M,p)\rightarrow\R$ tc\footnote{Vanno
+    lette: $v(\lambda [(U,f)]_\sim+\mu [(V,g)]_\sim)=\lambda
+    v([(U,f)]_\sim)+\mu v([(V,g)]_\sim)$ e
+    $v([(U,f)]_\sim[(V,g)]_\sim)=
+    v([(U,f)]_\sim)[(V,g)]_\sim+[(U,f)]_\sim v([(V,g)]_\sim)$}
+    \begin{itemize}
+        \item lineare: $v(\lambda f+\mu g)=\lambda v(f)+\mu v(g)$
+        con $\lambda,\mu\in\R$ 
+        \item soddisfa leibniz: $v(fg)=v(f)g+fv(g)$
+    \end{itemize} 
+\end{definition}
+Queste mappe esistono?
+Un esempio immediato: 
+\begin{ex}
+    Carta $(U,x)$ di $M$, $x:x(U)\rightarrow\R^m$. Se $f$ è liscia
+    $x(p)$ è liscia in intorno di $x(p)\in x(U)$ per definizione.
+    Posso quindi avere una derivazione sui germi di questa funzione
+    composta. Definisco
+    \begin{equation*}
+        \Biggl(\eval{\pdv{x_i}}_p\Biggr)(f):=\Biggl(\pdv{f\circ
+        x^{-1}}{t_i}\Biggr)(x(p))
+    \end{equation*}
+    con $t_i$ le coord su $\R^m$. Si verifica facilmente che sono
+    derivazioni.
+\end{ex}
+L'insieme delle derivazioni su $C^\infty(M,p)$ è spazio vettoriale
+su campo $\R$ con somma tra vettori e prodotto per scalare definiti
+in modo naturale.
+\begin{obs}
+    $\{\pdv{x_i}|_p\}_{i=1}^m$ base di $T_pM$ e
+    quindi dim$T_pM=m=$dim$M$\footnote{Il concetto di
+    dimensione per spazi vettoriali e per varietà è definito in
+    modo diverso.}
+\end{obs}
+\begin{theorem}
+    $v\in T_pM$, $(x,U)$ carta di $M$ $v=\sum_i^m a_i\pdv{x_i}|_p$
+    con
+    \begin{displaymath}
+        a_i=v(x_i)
+    \end{displaymath}
+\end{theorem}
+\begin{proof}
+    Osservo: 
+    \begin{displaymath}
+        \Biggl(\eval{\pdv{x_i}}_p\Biggr)(x_j)=\Biggl(\pdv{x_j\circ
+        x^{-1}}{t_i}\Biggr)(x(p))
+    \end{displaymath}
+    e $((x_1\dots x_m)\circ x^{-1})=(x\circ x^{-1})(t)=t=(t_1\dots
+    t_m)$. Quindi
+    \begin{displaymath}
+        \Biggl(\eval{\pdv{x_i}}_p\Biggr)(x_j)=
+        \Biggl(\pdv{t_j}{t_i}\Biggr)(x(p))=\delta_{ij}
+    \end{displaymath}
+    $v(x_j)=\sum_i^m a_i\pdv{x_i}|_p(x_j)=a_j$
+\end{proof}
+
+\begin{theorem}
+    $v\in T_pM$, $(U,x),(V,y)$ carte di $M$, $v=\sum_i^m
+    a_i\pdv{x_i}|_p=\sum_i^m b_i\pdv{y_i}|_p$ con 
+    \begin{displaymath}
+        a=J_{y(p)}F\cdot b
+    \end{displaymath}
+    dove $F=x\circ y^{-1}$ è il cambio di coordinate.
+\end{theorem}
+\begin{proof}
+    Per quanto visto nella dimostrazione prima e usando la
+    definzione degli elementi della base:
+    \begin{displaymath}
+        a_j=\sum b_i\Biggl(\eval{\pdv{y_i}}_p\Biggr)(x_j)=
+        \sum b_i \Biggl(\pdv{x_j\circ y^{-1}}{t_i}\Biggr)(y(p))
+    \end{displaymath}
+    che chiamando $F=x\circ y^{-1}$ è proprio il prodotto
+    matrice-vettore.
+\end{proof}
+
+Vgliamo legare spazi tangenti di $M,N$ collegate da mappa liscia
+$\Phi$.\\
+Problema: devo far agire sui germi di $N$ derivazioni che agiscono
+sui germi di $M$. Devo prima di tutto introdurre un oggetto che mi
+faccia passare da
+$C^\infty(N,\Phi(p))$ a
+$C^\infty(M,p)$.
+\begin{definition}[Pull-back]
+    \begin{displaymath}
+        \Phi^*:C^\infty(N,\Phi(p))\rightarrow C^\infty(M,p):
+        g\mapsto \Phi^*(g):=g\circ\Phi
+    \end{displaymath}
+\end{definition}
+\begin{obs}
+    $\Phi^*$ è lineare: $\Phi^*(\lambda g+\mu h)=\lambda\Phi^*(g)+
+    \mu\Phi^*(h)$
+\end{obs}
+\begin{proof}
+    Devo mostrare che l'identità vale $\forall x\in M$.  
+    $\Phi^*(\lambda g+\mu h)(x)=(\lambda g+\mu h)(\Phi(x))= 
+    \lambda g(\Phi(x))+\mu h(\Phi(x))=\lambda \Phi^*(g)(x)+\mu
+    \Phi^*(h)(x)$
+\end{proof}
+\begin{definition}[Differenziale]
+    $\df{\Phi}{p}:T_pM\rightarrow T_{\Phi(p)}N:v\mapsto
+    \df{\Phi}{p}(v):=v(\Phi^*(g))(=v(g\circ\Phi))$
+\end{definition}
+Proprietà. 
+\begin{itemize}
+    \item È mappa fra spazi vettoriali: vogliamo sia lineare
+        \begin{prpr}
+            $\df{\Phi}{p}(\lambda v +\mu
+            u)=\df{\Phi}{p}(v)+\df{\Phi}{p}(u)$
+        \end{prpr}
+        \begin{proof}
+            L'ugugaglianza vale iff $(\df{\Phi}{p}(\lambda v +\mu
+            u))(g)=(\df{\Phi}{p}(v))(g)+(\df{\Phi}{p}(u))(g)\quad\forall
+            g\in C^\infty(N,\Phi(p))$. Dalla definizione di spazio tangente 
+            $(\df{\Phi}{p}(\lambda v +\mu u))(g)=(\lambda v +\mu
+            u)(g\circ\Phi)=\lambda v(g\circ\Phi)+\mu u(g\circ u)=
+            (\df{\Phi}{p}(v))(g)+(\df{\Phi}{p}(u))(g)$.
+        \end{proof}
+        
+    \item differenziale dell'identità
+        \begin{prpr}
+            $\df{id_M}{p}=id_{T_pM}$
+        \end{prpr}
+        \begin{proof}
+            $v(g\circ id_M)=v(g)\quad\forall g$
+        \end{proof}
+
+    \item Composizione di differenziali
+        \begin{prpr}
+            $\Phi:M\rightarrow N,\,\Psi:N\rightarrow S$ lisce,
+            $p\in M$ allora $\df{\Psi}{\Phi(p)}\circ\df{\Phi}{p}=
+            \df{(\Psi\circ\Phi)}{p}:T_pM\rightarrow
+            T_{\Psi(\Phi(p))}S$
+        \end{prpr}
+        \begin{proof}
+            Vale iff $\df{(\Psi\circ\Phi)}{p}(v)=
+            (\df{\Psi}{\Phi(p)}\circ\df{\Phi}{p})(v)\quad\forall
+            v\in T_pM$. Fissata $v$ vale iff
+            $(\df{(\Psi\circ\Phi)}{p}(v))(h)=
+            ((\df{\Psi}{\Phi(p)}\circ\df{\Phi}{p})(v))(h)\quad
+            \forall h\in C^\infty(S,\Psi(\Phi(p)))$. 
+            $(\df{(\Psi\circ\Phi)}{p}(v))=v(h\circ(\Psi\circ\Phi))=
+            v((h\circ\Psi)\circ\Phi)=(\df{\Phi}{p}(v))(h\circ\psi)= 
+            ((\df{\Psi}{\Phi(p)}(\df{\Psi}{p})(v))(h)$.
+        \end{proof}
+
+    \item Differenziale dell'inversa
+        \begin{prpr}
+            Se $\Phi:M\rightarrow N$ diffeo con inversa $\Psi$
+            allora $\df{\Psi}\Phi{p}:T_pM\rightarrow T_{\Phi(p)}N$
+            è isomorfismo con inversa $\df{\Psi}{\Phi(p)}$. 
+        \end{prpr}
+        \begin{proof}
+            $\Psi\circ\Phi=id_M$. Per la p2
+            $\df{(\Psi\circ\Phi)}{p}=id_{T_pM}$. Per la p3
+            $\df{\Psi}{\Phi(p)}\circ\df{\Phi}{p}=id_{T_pM}$.
+            Analogamente per la composizione inversa.
+        \end{proof}
+
+\end{itemize}   
+
+Siccome il differenziale è lineare vogliamo ottenerne la forma
+matriciale
+\begin{theorem}
+    $(U,x),(V,y)$ carte di $M,N$. $\Phi_M\rightarrow N$ liscia.
+    Su questa base
+    \begin{displaymath}
+        \df{\Phi}{p}=J_{x(p)}F
+    \end{displaymath}
+    con $F=y\circ\Phi\circ x^{-1}$
+\end{theorem}
+\begin{proof}
+    Il differenziale applicato a un elemento della base di $T_pM$ è
+    un elemento della base di $T_{\Phi(p)}N$, quindi
+    $\df{\Phi}{p}(\pdv{x_j})|_p=\sum^nv_{ij}\pdv{y_i}|_{\Phi(p)}$
+    con $v_{ij}\in\R$.
+    Per quanto visto $v_{ij}=\df{\Phi}{p}(\pdv{x_j})|_p(y_i)=
+    (\pdv{x_j})(y_i\circ\Phi)=\pdv{y_i\circ\Phi\circ
+    x^{-1}}{t_j}(x(p))$. Ponendo $F=(F_1\dots F_n)$ con
+    $F_i=y_i\circ\Phi\circ x^{-1}$ la tesi.
+\end{proof}
+
+
+\subsection{Cammini}
+$\gamma:(-\varepsilon,\varepsilon)\rightarrow M$, $\gamma(0)=p$
+cammino.
+\begin{definition}[Vettore tangente]
+    $\gamma_*(f):=\dv{f\circ\gamma}{\tau}\,(0)$ con
+    $\tau\in(-\varepsilon,\varepsilon)$.
+\end{definition}
+$f\circ\gamma:\R\to\R$: ho una derivata nel senso comune del
+termine.
+
+\begin{definition}[Differenziale]
+    $\gamma$ cammino, $\Phi:M\rightarrow N$ liscia.
+    \begin{displaymath}
+        \df{\Phi}{\gamma_*}:=(\Phi\circ\gamma)_*
+    \end{displaymath}
+    cioè il vettore tangente ottenuto mappando il cammino su $N$
+    mediante $\Phi$.
+\end{definition}
+
+Ogni $v\in T_pM$ è del tipo $\gamma_*$ per un certo $\gamma$.
+\begin{ex}
+    $T_p\R^m=\R^m$ infatti:\\
+    Carta $(\R^m,id_{\R^m})$. $v=\sum_i^m
+    a_i\pdv{t_i}|_p\leftrightarrow a=(a_1\dots a_m)$ \\
+    Preso $\gamma:(-\varepsilon,\epsilon)\rightarrow\R^m$,
+    con $p=\gamma(0)$
+    $\gamma_*(f)=
+    (\dv{f(\gamma_1(\tau)\dots\gamma_m(\tau))}{\tau})|_{\tau=0}=
+    \sum \pdv{f}{t_i}(p)\gamma_i'(0)$ e quindi per confronto
+    $\gamma_i'(0)=a_i$.
+\end{ex}
+
+La definizione di differenziale ottenuta a partire dalle
+derivazioni deve essere la stessa di quella ottenuta a partire dai
+cammini. 
+\begin{obs}
+    Le due definizioni di differenziale sono equivalenti
+\end{obs}
+\begin{proof}
+    Per la definizione data usando le derivazioni
+    $(\df{\gamma_*}{p})(g)=\gamma_*(g\circ\Phi)=
+    \dv{g\circ\Phi\gamma}{\tau}|_{\tau=0}=
+    \dv{g\circ(\Phi\gamma)}{\tau}|_{\tau=0}=(\Phi\circ\gamma)_*(g)$
+    e questo vale per tutte le $g$.
+\end{proof}
+
+\subsection{Fibre}
+\begin{theorem}
+    $M=F^{-1}(b)\subseteq\R^{n+m}$ con $F:\R^{n+m}\to\R^n$ allora
+    $\forall a\in M$ $T_aM\equiv ker(\df{F}{a})\cong ker(J_aF)$
+    dove $\df{F}{a}:T_a\R^{n+m}\to T_b\R^n$ e
+    $J_aF:\R^{n+m}\to\R^n$.
+\end{theorem}
+\begin{proof}
+    $rk(J_aF)$ è massimo e quindi uguale a $n$. Per il teorema di
+    nullità+rango $dim(ker(F_aF))=n+m-n=m=dim(T_aM)$. Resta da
+    mostrare che $T_aM\subseteq ker(J_aF)\cong ker(\df{F}{a})$.
+    Sia $v\in T_aM$, prendo $\gamma:(-\epsilon,\epsilon)\to
+    M:0\mapsto a$ tc $\gamma_*=v$
+    ($\gamma_*(f)=\pdv{f\circ\gamma}{\tau}|_{\tau=0}$) allora 
+    $(\df{F}{a}\gamma_*)(g)=\gamma_*(g\circ F)$ con $g\in
+    C^\infty(\R^n,b)$. Su $M$ $F(a)=b$ costante e quindi
+    $(\df{F}{a}v)(g)=(\df{F}{a}\gamma_*)(g)=\gamma_*(g\circ
+    F)=\gamma_*(g(b))=0$ ovvero $v\in ker(\df{F}{a})$
+
+    
+\end{proof}
+
+\begin{ex}[Spazio tangente a $S^n$]
+    $S^n=F^{-1}(1)$ con $F:\R^{n+1}\to\R:(x_0\dots
+    x_n)\mapsto\langle x,x\rangle$.
+    $T_xS^n=ker(J_xF)=\left\{ y\in\R^{n+1}:\langle x,y\rangle=0
+    \right\}$ (dato che $J_xF=2(x_0,\dots x_n)$ ovvero il fatto
+    noto che i tangenti alla sfera sono ortogonali al raggio.
+\end{ex}
+
+

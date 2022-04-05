@@ -1,0 +1,147 @@
+\begin{definition}[Gruppo di Lie]
+    $G$ è gruppo di Lie se è varietà differenziabile dotata di due
+    applicazioni lisce $\mu:G \times G \to G$, $\nu: G \to G$
+    e un elemento $e$ tc $G$ sia gruppo con operazioni
+    $g_1g_2:=\mu(g_1,g_2)$, $g^{-1}=\nu(g)$, $gg^{-1}=e$
+\end{definition}
+\begin{definition}[Omomorfismo tra gruppi di Lie]
+    $\phi:G\to G$ tc sia omomorfismo tra gruppi e sia liscia.
+\end{definition}
+\begin{definition}[Sottogruppo di Lie]
+    $H\subseteq G$ sottogruppo è sottogruppo di Lie se è anche
+    sottovarietà.
+\end{definition}
+
+\begin{ex}(Gruppi su $\R$)\\
+    $(\R,+)$ con $\mu(x,y)=x+y$, $\nu(x)=-x$.\\
+    $(\R^{\times},\dot)$ con $\mu(x,y)=xy$, $\nu(x)=1/x$.\\
+    $\exp:\R\to\R^{\times}$ è omomorfismo fra questi due gruppi.
+\end{ex}
+\begin{definition}[Traslazione a sinistra]
+    $g\in G$ definisco traslazione a sinistra $L_g:G\to
+    G:h\mapsto\mu(g,h)=gh$
+\end{definition}
+Proprietà:
+\begin{itemize}
+    \item Continuità
+        \begin{prpr}
+            $L_g$ è liscia
+        \end{prpr}
+        \begin{proof}
+            Siccome $\mu$ liscia per definizione.
+        \end{proof}
+    \item Traslazione per l'elemento neutro
+        \begin{prpr}
+            $L_e=id_G$
+        \end{prpr}
+    \item Composizione
+        \begin{prpr}
+            $L_g\circ L_{g'}=L_{gg'}$
+        \end{prpr}
+        \begin{proof}
+            $(L_g\circ L_{g'})(h)
+            =L_g(L_{g'}(h))=g(g'h)=gg'(h)=L_{gg'}h$ dove ho usato
+            l'associatività del gruppo.
+        \end{proof}
+    \item Inversa
+        \begin{prpr}
+            $L_g$ è diffeomorfismo
+        \end{prpr}
+        \begin{proof}
+            Dalle precedenti proprietà segue che $L_g\circ
+            L_{g^{-1}}=L_e=id_G=L_{g'}\circ L_g$ ovvero esiste
+            l'inversa che è ancora una traslazione a sinistra e
+            quindi è liscia
+        \end{proof}
+    \item Differenziale
+        \begin{prpr}
+            $\df{L_g}{h}$ è isomorfismo
+        \end{prpr}
+        \begin{proof}
+            Dalle proprietà del differenziale siccome $L_g$ è
+            diffeomorfismo.
+        \end{proof}
+
+\end{itemize}
+
+\begin{definition}[Campi $X^v$]
+    $v\in T_eG$ fissato $X^v$ campo vettoriale su $G$ è definito da
+    $(X^v)g:=\df{L_g}{e}v\in T_gG$
+\end{definition}
+Osservazione: $X^v_e=(X^v)_e=\df{L_e}{e}v=id_{t_G}v$.
+
+\begin{definition}[Campi invarianti a sinistra]
+    $X$ campo vettoriale su $G$ è invariante a sinistra se
+    $\df{L_g}{h}X_h=X_{L_g(h)}=X_{gh}\in T_{gh}G,\,\,\forall g,h\in
+    G$.
+\end{definition}
+In altre parole significa che $X$ è $L_g$-correlato con sè stesso.
+Esistono campi così?
+
+\begin{theorem}
+    $X$ è invariante a sinistra iff è nella forma $X^v$ per un
+    certo $v\in T_eG$.
+\end{theorem}
+\begin{proof}
+    Dimostro che ogni $X^v$ è invariante a sinistra ovvero che vale
+    $\df{L_g}{h}X^v_h=X^v_{gh}$. Usando le proprietà del
+    differenziale e della tralsazione a sinistra
+    $\df{L_g}{h}X^v_h=\df{L_g}{h}(\df{L_h}{e}(v))=\df{L_g\circ
+    L_h}{e}(v)=\df{L_{gh}}v=X^v_{gh}$.
+
+    Dimostro che ogni campo invariante a sinistra (cioè
+    $\df{L_g}{h}X_h=X_{gh}$) è del tipo $X^v$ per un certo $v\in
+    T_eG$. Prendo nella definizione $h=e$, allora
+    $\df{L_g}{e}X_e=X_{ge}=X_g$ ma $X_e\in T_eG$ e quindi
+    $X_g=X^v_g$ con $v=X_e$.
+    
+\end{proof}
+
+Da quanto detto abbiamo il seguente ragionamento.
+$G$ gruppo di Lie su cui sono definiti $X,Y$ campi vettoriali
+invarianti a sinistra, ovvero tc $X,Y$ sono $L_g$- correlati con
+loro stessi $\forall g\in G$. Ma allora $\comm{X}{Y}$ è
+$L_g$-correlato con sè stesso e quindi è invariante a sinistra.
+\begin{itemize}
+    \item $X$ invariante a sinistra $\iff$ $X=X^v$ per un certo
+        $v\in T_eG$
+    \item $Y$ invariante a sinistra $\iff$ $Y=X^w$ per un certo
+        $w\in T_eG$
+    \item $\comm{X}{Y}$ invariante a sinistra $\iff$
+        $\comm{X}{Y}=X^z$ per un certo $z\in T_eG$
+\end{itemize}
+Le parentesi di Lie inducono un'operazione che associa a due
+elementi di $T_eG$ un elemento di $T_eG$.
+
+\begin{definition}[Prodotto di Lie o commutatore]
+    $x,y,z\in T_eG$, il prodotto di Lie $\comm{v}{w}=z$ iff le
+    parentesi di Lie $\comm{X^v}{X^w}=X^z$
+\end{definition}
+
+\begin{definition}[Algebra di Lie]
+    Spazio vettoriale $\g$ dotato di applicazione bilineare
+    $\g\times\g\to\g:(a,b)\mapsto \comm{a}{b}$ che goda delle
+    proprietà 
+    \begin{itemize}
+        \item $\comm{a}{b}=-\comm{b}{a}$ 
+        \item identità di Jacobi.
+    \end{itemize}
+\end{definition}
+
+\subsection{Gruppi matriciali}
+$GL(n,\R)=\left\{ A\in M_n(\R): detA\neq0 \right\}$ è un gruppo di
+Lie con sottogruppi di Lie, ad esempio, $SO(n)=\left\{ A\in
+M_n(\R): AA^t=id, detA=1 \right\}$ e 
+$SL(n)=\left\{ A\in M_n(\R): detA=1 \right\}$.
+
+Vediamo prima di tutto che $GL(n,\R)$ è un gruppo di Lie.
+$GL(n,\R)\in M_n(\R)\cong\R^{n^2}$ e in particolare è un aperto:
+essendo diffeomorfo ad un aperto di $\R^k$ è una varietà con
+atlante $\left\{ id_{GL(n,\R)} \right\}$. Prendo come $\mu$ il
+prodotto tra matrici, che è liscio in quanto polinomiale, e come
+$\nu$ l'operazione che ad una matrice associa la sua inversa
+rispetto al prodotto. $A^{-1}=\frac{1}{detA}A^{\#}$ con
+$A^{\#}_{ij}=(-)^{i+j}$ per il determinante della sottomatrice
+ottenuta cancellando da $A$ la $j$-esima riga e la $i$-esima
+colonna. Siccome in $GL(n,\R)$ il determinante è sempre diverso da
+zero questa operazione non da problemi ed è liscia.

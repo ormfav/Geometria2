@@ -1,0 +1,138 @@
+\begin{definition}[Carta]
+    $M$ insieme. Una carta di $M$ è la coppia $(U,x)$ con:
+    \begin{itemize}
+        \item $U\subseteq M$ 
+        \item $x: U \rightarrow x(U)\subseteq \R^m$
+        biiezione\footnote{$\exists x^{-1}: x(U)\rightarrow U$}
+        e $x(U)$ aperto\footnote{$\forall u\in U\exists
+        \epsilon\geq 0$ tc $B_{\epsilon}(u)=\{x\in \R^m:
+        \norm{x-u}\leq\varepsilon$\}. Segue che $U=\bigcup_{u\in
+        U} B_{\epsilon}(u)$}. $x$ è chiamata parametrizzazione di
+        $U$.
+    \end{itemize}
+\end{definition}
+\begin{definition}[Carte compatibili]
+    Le carte $(U_{\alpha},x_{\alpha}),(U_{\beta},x_{\beta})$ sono
+    compatibili se $F_{\beta\alpha}=x_{\beta}\circ
+    x^{-1}_{\alpha}:x_{\alpha}(U_{\alpha}\cap U_{\beta})\rightarrow
+    \R^m$ è diffeomorfismo\footnote{Mappa liscia con inversa
+    liscia}.
+\end{definition}
+TODO:DISEGNO 220301
+Osservazioni: 
+\begin{itemize}
+    \item Una carta è sempre compatibile con sè stessa 
+    \item l'inversa di $F$ esiste sempre ma non è detto sia liscia
+\end{itemize}
+\begin{definition}[Atlante]
+    $\A=\left\{ (U_{\alpha},x_{\alpha}) \right\}_{\alpha\in I}$
+    collezione di carte di M a due a due compatibili tc
+    $M=\bigcup_{\alpha\in I}U_{\alpha}$
+\end{definition}
+\begin{definition}[Varietà differenziabile]
+    Coppia $(M,\A)$ con $x_{\alpha}(U_{\alpha})\subseteq \R^m$
+    aperto $\forall\alpha\in I$.
+\end{definition}
+
+\begin{ex}
+    $M=\R^m$.\\
+    L'unica carta è $x=id_{\R^m}:U=M=\R^m\rightarrow\R^m$.\\ 
+    $id(M)$ aperto essendo immagine di aperto.\\
+    $\A=\left\{ (M,id_M) \right\}$.\\
+    Quindi $\R^m$ è varietà.
+\end{ex}
+\begin{ex}
+    $M\subset\R^m$ aperto.\\
+    L'unica carta è $x=id_{M}:U=M\rightarrow\R^m$.\\ 
+    $id(M)$ aperto essendo immagine di aperto.\\
+    $\A=\left\{ (M,id_M) \right\}$.\\
+    Quindi ogni aperto di $\R^m$ è varietà.
+\end{ex}
+\begin{ex}
+    $M=S^n$ (sfera n-dimensionale).
+    TODO: DA FARE 220301
+\end{ex}
+
+
+
+Dato che esiste una definizione di mappe lisce su $\R^m$ posso
+introdurre grazie all'atlante una definizione di mappe lisce su
+varietà.
+\begin{definition}[Applicazione liscia]
+    $M,N$ varietà differenziabili di dimensione $m,n$.
+    $f:M\rightarrow N$ è liscia in $p\in M$ se $\forall (U,x), (V,y)$
+    carte di $M,N$ con $p\in U,f(p)\in V$ la funzione  $F=y\circ
+    f\circ x^{-1}: x(U\cap f^{-1}(V))\rightarrow\R^n$ è\footnote{In
+    generale $f(U)\neq V$, per questo si prende l'intersezione}
+    liscia in $x(p)$ con $x(U\cap f^{-1}(V))$ aperto di $\R^m$.
+\end{definition}
+TODO:DISEGNO 220308
+Verificare la proprietà per ogni carta è problematico
+\begin{obs}
+    È suffuciente effettuare la verifica per una sola coppia di
+    carte.
+\end{obs}
+\begin{proof}
+    Supponiamo $F=y\circ f\circ x^{-1}$ liscia, bisogna mostrare
+    che $w\circ f\circ v^{-1}$ sia liscia.
+    $w\circ f\circ v^{-1}=w\circ (y^{-1}\circ y)\circ f\circ
+    (x^{-1}\circ x)\circ v^{-1}=(w\circ y^{-1})\circ (y\circ f\circ
+    x^{-1})\circ (x\circ v^{-1})$ che è composizione di F (liscia
+    per ipotesi) e di due cambi di carta che sono diffeomorfisimi e
+    quindi lisci.
+    TODO:DISEGNO 220301
+\end{proof}
+\begin{obs}
+    $M,N,S$ varietà, $f:M\rightarrow N, g:N\rightarrow S$ lisce.
+    $g\circ f:M\rightarrow S$ liscia.
+\end{obs}
+\begin{proof}
+    Sia $p\in M$, carte $(U,x),(V,y),(W,z)$ di $M,N,S$ tc $p\in
+    U,f(p)\in V,g(f(p))\in W$. Devo mostrare che $z\circ(g\circ
+    f)\circ x^{-1}$ è liscia su $(g\circ f)(U\cap W)$.
+    TODO:DISEGNO
+    $z\circ(g\circ f)\circ x^{-1}=z\circ g \circ (y^{-1}\circ y)
+    \circ f\circ x^{-1}=(z\circ g \circ y^{-1})\circ (y \circ
+    f\circ x^{-1})$ composizione di funzioni lisce per l'ipotesi
+    $f,g$ lisce.
+\end{proof}
+
+\begin{ex}
+    $M$ varietà, $N=\R^n$ (l'unica carta è $(\R^n,id_{\R^n})$).\\
+    $f:M\rightarrow \R^n$ è liscia se $id_{\R^n}\circ f\circ
+    x^{-1}=f\circ x^{-1}$ è liscia.
+\end{ex}
+\begin{ex}
+    Una parametrizzazione è liscia? $(U,x)$ carta di $M$.
+    $x:U\rightarrow \R^m$ per quanto visto è una mappa fra le
+    varietà $U$ con altante $\left\{ (U,x) \right\}$ e $\R^m$.
+    Dalla quanto visto prima $x$ è liscia se $x \circ x^{-1}$ è
+    liscia. Ma si tratta dell'identità e quindi di una funzione
+    liscia.
+    
+\end{ex}
+\subsection{Fibre}
+La sfera è un insieme del tipo $F^{-1}(b)$ con $F=\sum x_i^2$ e
+$b=1$. Esiste un modo semplice per capire se insiemi di questo tipo
+sono varietà, la cui dimostrazione sfrutta il teorema della
+funzione inversa\footnote{TODO: TEOREMA FUNZIONE INVERSA}.
+\begin{theorem}
+    $U\subseteq\R^{m+n}$ aperto\\
+    $F:U\rightarrow \R^m$ liscia\\
+    !!$b\in\R^m$ tc $rkJ_aF$ massimale per ogni $a=F^{-1}(b)$\\
+    allora:\\
+    $F^{-1}(b)=\left\{ x\in U: F(x)=b \right\}$ è varietà di
+    dimensione n\\
+TODO: CARTE
+\end{theorem}
+\begin{proof}
+    TODO: PROOF 220301
+\end{proof}
+
+\begin{obs}
+    $F:\R^{n+m}\rightarrow\R^m$ sommersione su $F^{-1}(b)$,
+    $f:\R^{n+m}\rightarrow \R$ lisca. Allora
+    $f\eval_{M}:M=F^{-1}(b)\rightarrow\R$ è liscia. Infatti deve
+    essere liscia $f\circ x^{-1}$ ma $x$ abbiamo visto essere
+    liscia. ???è vero???
+\end{obs}

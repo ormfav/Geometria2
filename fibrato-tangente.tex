@@ -1,0 +1,252 @@
+Idea: considerare tutti gli spazi tangenti a una varietà $M$. 
+\begin{definition}[Fibrato tangente]
+    \begin{displaymath}
+       TM:=\bigsqcup_{p\in M}T_pM  
+    \end{displaymath}
+    unione disgiunta dei tangenti cioè se $v\in TM$ allora $v\in
+    T_pM$ per un unico $p$.
+\end{definition}
+L'unione disgiuta è necessaria perchè non saprei dare significato
+ai punti di intersezione fra due tangenti considerati
+contemporaneamente. L'unione disgiunta mi permette di considerare
+la mappa proiettiva $\pi:TM\to M:v\mapsto \pi(v)=p
+\quad se\quad v\in T_pM$.
+\begin{obs}
+    $TM$ è varietà, $dim TM=2dim M$
+\end{obs}
+\begin{proof}
+    Cerco carte compatibili di $TM$ costruite a partire da carte di
+    $M$. Data $(U,x)$ $\forall p\in U$ $\{\eval{\pdv{x_i}}_p\}_i$ è
+    base di $T_pM$. Considero l'isomorfismo tra $T_pM$ e $\R^m$ che
+    associa ad ogni derivazione il vettore delle coordinate nella
+    sua base $a$. Posso quindi costruire la biiezione (la carta)
+    \begin{displaymath}
+        \tilde{x}:TU\to\R^m\times\R^m:v\mapsto(x(p),a)
+    \end{displaymath}
+    dove: $TU\equiv\pi^{-1}(U)\equiv\sqcup_{p\in U}T_pM$; 
+    $x(U)\times\R^m\subseteq\R^m\times\R^m$ aperto perchè $x(U)$
+    aperto per definizione di carta.
+
+    Resta compatibilità. $(TU,\tilde{x}),(TV,\tilde{y})$ carte di
+    $TM$. Cambiando base $(\tilde{y}\circ\tilde{x}^{-1})=
+    \tilde{y}(\sum a_i\eval{\pdv{x_i}}_p)= \tilde{y}(\sum
+    b_i\eval{\pdv{y_i}}_p)= (y(p),b)$. Ma $y(p)$ liscia essendo
+    parametrizzazione di $V$; $b=J_{x(p)}(y\circ x^{-1})a$ è
+    matrice con entrate lisce dato che $y\circ x^{-1}$ deve essere
+    lisca per la compatibilità di $x,y$. Allo stesso modo
+    $\tilde{x}\circ\tilde{y}$ è liscia e quindi le carte sono
+    compatibili.
+\end{proof}
+
+\begin{obs}
+    $\pi:TM\to M$ è liscia
+\end{obs}
+\begin{proof}
+    TODO: PER ESERCIZIO
+\end{proof}
+
+\begin{ex}
+    $M=\R^m$ con atlante $(\R^m,id_{\R^m})$. $TM$ è diffeomorfo a
+    $\R^m\times\R^m$ ovvero a $M\times M$.
+\end{ex}
+
+Idea: grazie a fibrato tangente posso definire applicazione che
+associa a $p\in M$ un vettore tangente.
+\begin{definition}[Campo vettoriale]
+    $M$ varietà, $\pi:TM\to M$. Un campo vettoriale $X$ su
+    $V\subseteq M$ aperto è l'applicazione \textbf{liscia} $X:V\to
+    TV=\pi^{-1}V\subseteq TM$ tc $\pi\circ X=id_V$
+\end{definition}
+La richiesta equivale a dire $\pi(X(p))=p\forall p\in V$, ovvero
+$X(p)\in\pi^{-1}(p)=T_pM$ (il campo vettoriale valutato in $p$ è
+un elemento del tangente in $p$, ovvero è una derivazione).
+Notazione: $X(p)=X_p$.
+
+
+\begin{theorem}
+    Se $(U,x)$ è carta di $M$ la rappresentazione di un campo
+    vettoriale è $X_p=\sum_{i=1}^m a_i(p)\pdv{x_i}|_p$ con
+    $a_i:U\to\R$ lisce.
+\end{theorem}
+\begin{proof}
+    la carta di $M$ induce: carta $(TU,\tilde{x})$ di $TM$ e 
+    base $\pdv{x}|_p$ di $T_pM$. Quindi $X_p=\sum
+    a_i(p)\pdv{x_i}|_p$ e la richiesta che $X$ sia liscia significa
+    richiedere $\tilde{x}\circ X\circ x^{-1}$ liscia. Indicando con
+    $t$ le coordiate di $\R^m$
+    $(\tilde{x}\circ X\circ
+    x^{-1})=\tilde{x}(X(x^{-1}(t)))=\tilde{x}(X_p)=
+    (x(p),(a_1(p)\dots a_m(p))=\bigl(t,\bigl[(a_1\circ
+    x^{-1})(t),\dots(a_m\circ x^{-1})(t)\bigr]\bigr)$. La prima
+    coordinata è a funzione identità che è liscia. Le altre sono
+    $a_i\circ x^{-1}=id_\R\circ a_i\circ x^{-1}$. La rischiesta che
+    siano lisce è per definizione $a_i$ lisce.
+    
+\end{proof}
+2 modi per costruire oggetti a partire da cv e funioni lisce:
+
+\begin{itemize}
+    \item Un nuovo campo vettoriale
+        \begin{definition}
+            $X,Y$ cv su $U\subseteq M$, $f,g:U\to\R$ lisce (!!).
+            $(fX+gY)(p):=f(p)X_p+g(p)Y_p\in T_pM$ (scalari per
+            derivazioni).
+        \end{definition}
+        È importante che $f,g$ lisce perchè così $fX+gY$ è liscio e
+        quindi è un campo vettoriale.
+    \item Una nuova funzione lscia
+        \begin{definition}
+            $X$ cv su $U\subseteq M$, $f:V\to\R$.
+            $(Xf)(p):X_p(f)$
+        \end{definition}
+        Questa è liscia infatti:
+        $(Xf)(p)=\sum(a_i(p)\pdv{x_i}|_p)(f)=
+        \sum a_i(p)\pdv{f\circ x^{-1}}{t_i}(x(p))$ (con $t_i$ le
+        coordinate di $\R^m$) e abbiamo $a_i$ lisce per ipotesi di
+        cv, $x(p)$ liscia siccome parametrizzazione, la derivata 
+        di $f\circ x^{-1}$ liscia perchè $f\circ x^{-1}\in
+        C^{\infty}(x(U))$.
+        Notazione pesante: per semplicità scriviamo
+        $Xf=\sum a_i \pdv{f}{x_i}$ in modo analogo a come faremmo in
+        $\R^m$.
+                
+        \begin{obs}
+            Vale leibnitz $X(fg)=X(f)g+fX(g)$
+        \end{obs}
+\end{itemize}
+
+\begin{definition}(Uguaglianza fra campi)
+    $X,Y$ cv su $U\subseteq M$. 
+    $X=Y\iff X_p=Y_p\forall p\in U\iff X(f)=Y(f)\forall W\in
+    U\text{ aperti },\forall f:W\to\R$ 
+\end{definition}
+
+Una domanda naturale: $X(f)$ è liscia, ma allora dato $Y$ cv,
+l'applicazione $f\mapsto Y(X(f))$ è un campo vettoriale? In
+generale no, infatti se $M=\R,X=Y=\dv{t}$ si ha
+$Y(X(fg))=X(f'g+fg')=f''g+fg''+2f'g'\neq 
+f''g+fg''=Y(X(f))g+fY(X(g))$ ovvero non vale leibnitz e quindi non
+ho una derivazione. Vogliamo quindi un'operazione che combini due
+cv a produrre un cv. 
+\begin{definition}[Parentesi di Lie]
+    $\comm{X}{Y}(f):= X(Y(f))-Y(X(f))$
+\end{definition}
+Proprietà (si vedono con semplici conti)
+
+\begin{itemize}
+    \item $\comm{X}{Y}=-\comm{Y}{X}$
+    \item $\comm{X}{\comm{Y}{Z}}+\comm{Y}{\comm{Z}{X}}+
+        \comm{Z}{\comm{X}{Y}}=0$
+\end{itemize}
+\begin{theorem}
+    $(U,x)$ carta di $M$, $X=\sum X_i\pdv{x_i}$, $Y=\sum Y_i
+    \pdv{x_i}$ allora $\comm{X}{Y}=
+    \sum_i\bigl(\sum_j(X_j\pdv{Y_i}{x_j}-\pdv{X_i}{x_j}Y_j)\bigr)
+    \pdv{x_i}$
+\end{theorem}
+\begin{proof}
+    $X(Y(f))=X(\sum_j Y_j\pdv{f}{x_j})=\sum_i X_i(\sum_j
+    \pdv{Y_j}{x_i}\pdv{f}{x_j}+Y_j\pdv{f}{x_i}{x_j})$.\\
+    $Y(X(f))=Y(\sum_i X_i\pdv{f}{x_i})=\sum_j Y_j(\sum_i
+    \pdv{X_i}{x_j}\pdv{f}{x_i}+X_i\pdv{f}{x_j}{x_i})$. 
+    Per schwarz in entrambi i termini compare $X_i
+    Y_j\pdv{f}{x_i}{x_j}$ e quindi nelle parentesi di Lie si
+    cancella (ovvero non compaiono derivate seconde, come
+    dev'essere). I coefficienti di $\comm{X}{Y}$ sono lisci essendo
+    $X,Y$ campi vettoriali.
+\end{proof}
+
+Idea: siccome $\df{\phi}{p}: T_pM\to T_{\phi(p)}N$, dato $X$ cv su
+$M$ voglio trovare "$\dd{\phi}X$" su $N$. Non posso semplicemente
+applicare il differenziale eprchè se $\phi$ non è iniettiva ci sono
+$p\neq q\in M$ tc $\phi(p)=\phi(q)\in N$ ma d'altro canto nulla
+garantisce che $\df{\phi}{p}X_p=\df{\phi}{q}X_q$ dove il primo sta
+in $T_{\phi(p)}N$ e il secondo in $T_{\phi(q)}N$ che coincidono.
+Quindi l'operazione non è ben definita in questo punto.
+TODO:DISEGNO 220329
+\begin{definition}[Campi correlati(1)]
+    $\phi:M\to N$, $X,X'$ cv su $M,N$ sono $\phi$-correlati se
+    $X'_{\phi(p)}=\df{\phi}{p}X_p\forall p\in M$
+\end{definition}
+\begin{definition}[Campi correlati(2)]
+    $\phi:M\to N$, $X,X'$ cv su $M,N$ sono $\phi$-correlati se
+    $X'(g)\circ\phi=X(g\circ\phi)\forall g:V\to\R,\forall V$ aperti
+    di $N$
+\end{definition}
+\begin{obs}
+    Le due definizioni sono equivalenti
+\end{obs}
+\begin{proof}
+    $(X'(g)\circ\phi)(p)=(X'(g))(\phi(p))=X'_{\phi(p)}(g)$. Se $X'$
+    correlato a $X$ secondo la prima definizione questo è uguale a
+    $(\df{\phi}{p}X_p)(g)=X_p(g\circ\phi)=(X(g\circ\phi))(p)$
+    ovvero la seconda definizone. Ho una catena di uguaglianze e
+    quindi posso permutare i termini fino a ottenere che la seconda
+    definizione implica la prima.
+\end{proof}
+Le parentesi di Lie si comportano bene rispetto alla correlazione,
+ovvero
+\begin{theorem}
+    $X$ $\phi$-correlato a $X'$,
+    $Y$ $\phi$-correlato a $Y'$ allora
+    $\comm{X}{Y}$ $\phi$-correlato a $\comm{X'}{Y'}$.
+\end{theorem}
+\begin{proof}
+    $\comm{X}{Y}(g\circ\phi)=X(Y(g\circ\phi))-Y(X(g\circ\phi))=
+    X(Y'(g)\circ\phi)-Y(X'(g)\circ\phi)=
+    X'(Y'(g))\circ\phi-Y'(X'(g))\circ\phi=\comm{X'}{Y'}(g)\circ\phi$
+\end{proof}
+
+Chiarite le problematiche per comodità si può scrivere
+$X'=\dd{\phi}X$ se i due campi sono correlati e la proprietà delle
+parentesi di Lie assume la forma suggestiva
+$\comm{\dd{\phi}X}{\dd{\phi}Y}=\dd{\phi}\comm{X}{Y}$.
+
+
+
+
+\subsection{Fibre}
+\begin{theorem}
+    Se $M=F^{-1}(b)$ con $F:\R^{n+m}\to\R^n$ allora
+    $TM=G^{-1}(b,0)$ con
+    $G:(\R^{n+m})^2\to(\R^n)^2:(x,y)\mapsto(F(x),J_xF(y))$.
+\end{theorem}
+\begin{proof}
+    La jacobiana di $G$ in $(B,0)$ ha rango massimo dato che può
+    essere scritta a blocchi come
+    \begin{displaymath}
+        J_{(x,y)}G(b,0)=\mqty(J_xF(b) & O \\ * & J_xF(b))
+    \end{displaymath}
+    Siccome la jacobiana di $F$ in $b$ ha rango $n$ allora la
+    jacobiana di G ha rango $2n$ ovvero rango massimo. Quindi $TM$
+    così definito è una varietà descritto da una carta che ha la
+    struttura delle carte del fibrato tangente.
+\end{proof}
+
+\begin{ex}(Fibrato tangente di $S^n$)
+    $S^n$ caratterizzata da $\langle x,x\rangle=1$; $T_xS^n$
+    caratterizzato da $\langle x,y \rangle=0$. Sono equazioni
+    quadratiche quindi molto semplici. Il fibrato tangente sarà
+    allora $TS^n=G^{-1}(1,0)$ con $G:\R^{n+1}\times R^{n+1}\to\R^2:
+    (x,y)\mapsto(\langle x,x \rangle, \langle x,y \rangle)$(si può
+    verificare facilmente il risultato del teorema precedente in
+    questo caso). \\
+    Nel caso $n=1$ la condizione $\langle x,y\rangle=0$ è
+    soddisfatta prendendo $y=t(-x_2,x_1)\forall t\in\R$ Per $n=1$
+    $TS^1\cong S^1\times\R$ e quindi un punto del fibrato
+    $(x_1,x_2,y_1,y_2)$ dove $(x_1,x_2)\in S^1$ è descritto da
+    $(x_1,x_2,t)$ ovvero il cilindro. Segue inoltre che
+    $TS^1\cong S^1\times\R$ ("$\cong$" $=$ diffeomorfo).
+\end{ex}
+
+\begin{ex}(Campi vettoriali su $S^n$)
+    Consideriamo campi mai nulli (ovvero campi del tipo $p\in
+    M\mapsto (x(p),y(p))\in TS^{n} tc y\neq 0 \forall p$. 
+    Su $S^{2n+1}$ è sempre possibile costruire campi di questo tipo
+    costruire un campo di questo tipo prendendo
+    $y(x)=(-x_2,x_1\dots,-x_{2n+2},x_{2n+1})$. Ovviamente questa
+    costruzione non funziona per $S^{2n}$ e in effetti si dimostra
+    che quando la dimensione della sfera è pari ogni campo
+    vettoriale sulla sfera ha almeno un punto in cui è nullo
+    (pettinare la sfera).
+\end{ex}
