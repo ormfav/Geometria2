@@ -1,0 +1,123 @@
+\begin{definition}[k-forme alternanti]
+    $V$ sv su $\R$. Una k-forma alternante è
+    un'applicazione $f:V\times V\times ...\times V\equiv V^k\to\R$
+    lineare in ogni variabile e tc $f(v_1,\dots,v_k)=0$ se
+    $v_i=v_j$ per $i\neq j$.
+\end{definition}
+\begin{obs}
+    $f(v_1,\dots,v_k)=0$ se $v_i=v_j$ per $i\neq j$ equivale a
+    $f(v_1,\dots,v_k)=
+    \epsilon(\sigma)f(v_{\sigma_1},\dots,v_{\sigma_k})$.
+\end{obs}
+\begin{proof}
+    Verifico doppia implicazione.
+
+    ($\Rightarrow$) Suppongo $v_i=v_j=v+w$ per certe $i\neq j$.
+    Per la multilinearità $0=f(\dots v+w\dots v+w\dots)=
+    f(\dots v\dots v\dots)+f(\dots v\dots w\dots)+
+    f(\dots w\dots v\dots)+f(\dots w\dots w\dots)=
+    f(\dots v\dots w\dots)+f(\dots w\dots v\dots)$ ovvero
+    $f(\dots v\dots w\dots)=-f(\dots w\dots v\dots)$: lo scambio
+    porta un $-$. $S_k$ gruppo permutazioni è generato dagli scambi
+    e $\epsilon:S_k\to\left\{ \pm 1 \right\}$ è omomorfismo, quindi
+    la tesi.
+
+    ($\Leftarrow$) $f(\dots v\dots v\dots)=-f(\dots v\dots v\dots)$
+    dato che lo scambio lascia inalterata $f$, ma quindi se due
+    elementi sono uguali $f=0$.
+\end{proof}
+
+\begin{ex}
+    $V=\R^n$, $det:\R^{n^2}\to\R:(v_1\dots v_n)\mapsto det(v_1,\dots
+    v_n)=det(v_1|v_2\dots| v_n)$ è una n-forma alternante.
+\end{ex}
+
+\begin{definition}
+    $Alt^k(V)$ insieme delle k-forme alternanti su $V$
+\end{definition}
+Con le operazioni $(\lambda f + \mu g)(v_1,\dots v_k)=\lambda
+f(v_1\dots v_k)+ \mu g(v_1\dots v_k)$, $Alt^k(V)$ è sv.
+Ha quindi senso studiarne la dimensione e cercarne una base. Alcune
+osservazioni.
+\begin{itemize}
+    \item $Alt^0(V)=\R$ per definizione 
+    \item $Alt^1(V)=V^*$ (duale: tutte le mappe lineari $V\to\R$)
+    \item $Alt^k(V)=\left\{ 0 \right\}$ se $k>dimV=n$, infatti:
+        siccome $k>n$ $v_1\dots v_k$ sono necessariamente
+        linearmente dipendenti. Supponiamo $v_k=\sum_{i=1}^{k-1}c_i
+        v_i$, allora per ogni k-forma si ha $f(v_1\dots
+        v_k)=\sum_{i=1}^{k-1}c_i f(\dots v_i\dots v_i)=0$ 
+\end{itemize}
+
+\begin{lem}
+    $dim(Alt^k(V))\leq\binom{n}{k}$ se $k\leq n$.
+\end{lem}
+\begin{proof}
+    scelta $e_1,\dots e_n$ base di $V$, $v_1,\dots v_k\in V$ si
+    scrivono $v_j=\sum_{i_j=1}^n v_{ji_j}e_{i_j}$ (il pedice
+    alle $i$ serve solo a ricordare a quale vettore sto facendo
+    riferimento ed è utile nel prossimo passaggio). 
+    $f(v_1,\dots v_k)=
+    \sum_{i_1}^n v_{1,i_1}f(e_{i_1},v_2\dots v_k)=
+    \sum_{i_1,i_2}^n v_{1,i_1}v_{2,i_2}f(e_{i_1},e_{i_2}, 
+    v_3\dots v_k)=\dots =
+    \sum_{i_1\dots,i_k}^n v_{1,i_1}\dots v_{k,i_k} 
+    f(e_{i_1},\dots e_{i_k})$. Posso considerare solo i termini
+    della sommatoria in cui tutti gli $e_{i_j}$ sono diversi
+    (negli altri casi $f$ si annulla) e posso quindi
+    riordinarli con una permutazione $\sigma$ tc $i\leq
+    i_{\sigma_1}<i_{\sigma_2}<\dots< i_{\sigma_k}\leq n$.
+    Perciò $f$ è determinata da al massimo $\binom{n}{k}$ costanti.
+\end{proof}
+Se trovo un insieme di $\binom{n}{k}$ k-forme linearmente
+indipendenti ho base e dimensione. Per farlo introduco
+l'operazione: 
+\begin{definition}[Prodotto esterno o wedge]
+    $\wedge: Alt^r(V)\times Alt^s(V)\to Alt^{r+s}(V):(f,g)\mapsto
+    f\wedge g$ tc
+    \begin{itemize}
+        \item $f\wedge g=(-)^{rs}g\wedge f$
+        \item $f\wedge(g\wedge h)=(f\wedge g)\wedge h$.
+    \end{itemize}
+\end{definition}
+\begin{obs}
+    $f\in Alt^1(V)$ allora $f\wedge f=0$
+\end{obs}
+\begin{obs}
+    $f_1,\dots f_k \in Alt^1(V)$ allora 
+    $f_1\wedge\dots\wedge f_k =
+    \epsilon(\sigma)f_{\sigma_1}\wedge\dots\wedge f_{\sigma_k}$
+\end{obs}
+\begin{obs}
+    $f_1,\dots f_k \in Alt^1(V)=V^*$ allora il prodotto esterno è
+    una k-forma e in particolare
+    $(f_1\wedge\dots\wedge f_k)(v_1,... v_k)=det(f_j(v_i))$ 
+\end{obs}
+
+Prendo $I=\left\{ i_1,\dots i_k \right\}\subseteq 
+\left\{ 1,\dots n \right\}$ ordinato e $v_1\dots v_k\in V$.
+Prendo poi $e_1\dots e_n$ e $\epsilon_1\dots\epsilon_n$ basi
+di $V,V^*$ (cioè $\epsilon_i(e_j)=\delta_{ij}$) e definisco
+$\epsilon_I=e_{i_1}\wedge\dots\wedge e_{i_k}$. Ho che 
+$v_j=\sum_{i_j=1}^n v_{j i_j}e_{i_j}$ e 
+$\epsilon_{i_j}(v_j)=v_{j i_j}$. Ne segue che, definite
+$\epsilon_I=e_{i_1}\wedge\dots\wedge e_{i_k}$ al variare di $I$,
+queste hanno la forma
+\begin{displaymath}
+    \epsilon_I(v_1,\dots v_k)= 
+    \det\mqty
+    (\epsilon_{i_1}(v_1)  & \dots & \epsilon_{i_1}(v_k) \\
+    \vdots                &       & \vdots              \\
+    \epsilon_{i_k}(v_1)  & \dots & \epsilon_{i_k}(v_k)  )=
+    \det\mqty
+    (v_{1i_1}  & \dots & v_{ki_1} \\
+    \vdots     &       & \vdots   \\
+    v_{1i_k}   & \dots & v_{ki_k} )
+\end{displaymath}
+Ho $\binom{n}{k}$ possibili scelte di $I$: ho costruito una
+famiglia di $\binom{n}{k}$ k-forme. DEVO MOSTRARE SONO LI
+
+
+
+Si scrive $Alt^k(V)=\bigwedge^kV^*$
+
